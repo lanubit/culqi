@@ -1,0 +1,8 @@
+{
+    "status": "error",
+    "message": "El token ingresado no es válido.",
+    "detail": {
+        "name": "JsonWebTokenError",
+        "message": "invalid token"
+    }
+}

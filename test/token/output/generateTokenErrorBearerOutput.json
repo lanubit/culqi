@@ -1,0 +1,4 @@
+{
+    "status": "error",
+    "message": "Token bearer no puede ser vacío."
+}
