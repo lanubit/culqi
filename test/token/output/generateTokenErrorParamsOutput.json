@@ -1,0 +1,36 @@
+{
+  "status": "error",
+  "message": "Error al validar parámetros de entrada.",
+  "detail": [
+      {
+          "value": 2000121456789016,
+          "msg": "La numeración de la tarjeta es incorrecta.",
+          "param": "cardNumber",
+          "location": "body"
+      },
+      {
+          "value": 12345,
+          "msg": "Invalid value",
+          "param": "cvv",
+          "location": "body"
+      },
+      {
+          "value": "13",
+          "msg": "El mes de expiración es incorrecto.",
+          "param": "expirationMonth",
+          "location": "body"
+      },
+      {
+          "value": "2029",
+          "msg": "El año de expiración es incorrecto.",
+          "param": "expirationYear",
+          "location": "body"
+      },
+      {
+          "value": "emi@gmai.com",
+          "msg": "Los dominios permitidos son: gmail.com, hotmail.com y yahoo.es",
+          "param": "email",
+          "location": "body"
+      }
+  ]
+}

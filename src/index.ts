@@ -12,8 +12,8 @@ app.use(express.json());
 app.use(appToken);
 
 app.get('/alive', (_req, res) => {
-  console.log('Proyecto up!')
-  res.send({ alive: true })
+  console.log('Proyecto up!');
+  res.send({ alive: true });
 });
 
 app.use(CustomError);

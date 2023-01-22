@@ -4,7 +4,6 @@ import { CardValue } from '../domain/valueObject/card.value';
 import { ProtectedCardValue } from '../domain/valueObject/protectedCard.value';
 import { TokenValue } from '../domain/valueObject/token.value';
 
-const SECRET = `${process.env.CLIENT_ID}`;
 const EXPIRES_JWT_IN = 60;
 
 export class TokenService {
@@ -32,7 +31,8 @@ export class TokenService {
       email
     });
 
-    const jwToken = await this._buildJwt({ payload: cardValue });
+    const clientId = process.env.CLIENT_ID;
+    const jwToken = await this._buildJwt({ payload: cardValue }, clientId);
     const tokenEntity = new TokenValue({ token: jwToken });
     await this.tokenRepository.saveToken(tokenEntity);
 
@@ -40,7 +40,8 @@ export class TokenService {
   }
 
   async getProtectedCard({ token }: { token: string }): Promise<ProtectedCardValue> {
-    const { payload } = await this._decodeJwt(token) as { payload: object };
+    const clientId = process.env.CLIENT_ID;
+    const { payload } = await this._decodeJwt(token, clientId) as { payload: object };
     const {
       cardNumber,
       expirationMonth,
@@ -55,9 +56,9 @@ export class TokenService {
     return new ProtectedCardValue({ cardNumber, expirationMonth, expirationYear, email });
   }
 
-  async _decodeJwt(token: string) {
+  async _decodeJwt(token: string, secret: any) {
     try {
-      return jwt.verify(token, SECRET);
+      return jwt.verify(token, secret);
     } catch (error) {
       let message = 'Error al decodifiar token.';
 
@@ -73,7 +74,7 @@ export class TokenService {
     }
   }
 
-  async _buildJwt(payload: object) {
-    return jwt.sign(payload, SECRET, { expiresIn: EXPIRES_JWT_IN });
+  async _buildJwt(payload: object, secret: any) {
+    return jwt.sign(payload, secret, { expiresIn: EXPIRES_JWT_IN });
   }
 }
