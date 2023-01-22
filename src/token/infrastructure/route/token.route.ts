@@ -13,8 +13,9 @@ const tokenService = new TokenService(tokenMongoRepository);
 
 const tokenController = new TokenController(tokenService);
 
-tokenRouter
-  .use(GetHeaders)
-  .post('/tokens', validateGenerateTokenInput, tokenController.generate);
+tokenRouter.use(GetHeaders);
+
+tokenRouter.post('/tokens', validateGenerateTokenInput, tokenController.generate);
+tokenRouter.get('/tokens/:token/card-decode', tokenController.getCardFromToken);
 
 export default tokenRouter;
