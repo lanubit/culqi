@@ -18,6 +18,4 @@ app.get('/alive', (_req, res) => {
 
 app.use(CustomError);
 
-app.listen(PORT, () => {
-  console.log(`Ejecutandose en el puerto ${PORT}`)
-})
+app.listen(PORT, () => console.log(`Ejecutandose en el puerto ${PORT}`));
