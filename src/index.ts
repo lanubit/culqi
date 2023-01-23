@@ -13,7 +13,7 @@ app.use(appToken);
 
 app.get('/alive', (_req, res) => {
   console.log('Proyecto up!');
-  res.send({ alive: true });
+  res.send({ status: true });
 });
 
 app.use(CustomError);

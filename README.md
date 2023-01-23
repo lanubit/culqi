@@ -27,7 +27,7 @@
 
 #
 ## PROYECTO
-
+*Proyecto habilitado en el puerto **3000***.
 ### Comandos:
 
 * Comando compilar typescript
@@ -44,6 +44,14 @@
   ```
   METHOD: POST
   URL: http://localhost:3000/tokens
+  BODY:
+  > {
+      "cardNumber": 2000121456789015,
+      "cvv": 123,
+      "expirationMonth": "12",
+      "expirationYear": "2028",
+      "email": "emi@gmail.com"
+    } 
   HEADER:
     Authorization: Bearer client_id_example
   ```
